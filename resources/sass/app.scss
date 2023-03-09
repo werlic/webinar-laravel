@@ -6,3 +6,15 @@
 
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
+
+body {
+    color: #43474B;
+}
+
+.btn-search {
+    color: $text-muted;
+}
+
+.btn-search:hover, .btn-search:focus, .btn-search:active {
+    color: $color-text-default;
+}
