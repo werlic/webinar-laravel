@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('description', 255)->required();
             $table->string('speaker', 255)->required();
             $table->string('moderator', 255)->required();
+            $table->integer('quota')->unsigned()->default(0);
+            $table->dateTime('registration_date')->nullable();
+            $table->dateTime('end_registration_date')->nullable();
+            $table->dateTime('start_date')->nullable();
             $table->foreignId('category_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('set NULL');
             $table->timestamps();
         });

@@ -19,13 +19,13 @@ body {
     color: $color-text-default;
 }
 
-.nav-tabs .nav-item .nav-link-category {
+.nav-pills .nav-item .nav-link-category {
     font-weight: bold;
     background-color: $secondary;
     color: $grey;
 }
 
-.nav-tabs .nav-item .nav-link-category.active {
+.nav-pills .nav-item .nav-link-category.active {
     background-color: $primary;
     color: $white;
 }

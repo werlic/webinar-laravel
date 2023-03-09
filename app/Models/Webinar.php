@@ -9,5 +9,10 @@ class Webinar extends Model
 {
     use HasFactory;
 
-    protected $fillable = [''];
+    protected $guarded = ['id'];
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category', 'category_id',' id');
+    }
 }

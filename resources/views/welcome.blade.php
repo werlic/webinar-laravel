@@ -75,40 +75,34 @@
                     </div>
                 </div>
                 <div id="section3">
-                    <ul class="nav nav-pills nav-fill nav-tabs border-bottom-0 mb-3">
-                        <li class="nav-item">
-                            <a href="#category1" class="nav-link nav-link-category active" data-bs-toggle="tab">Category-1</a>
+                    <ul class="nav nav-pills nav-fill" role="tablist">
+                        @foreach($category as $k => $cat)
+                        <li class="nav-item @if($k != count($category)) me-2 @endif">
+                            <a href="#category{{$k}}" class="nav-link nav-link-category @if($k == 0) active @endif" data-bs-toggle="pill">{{ $cat->category }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#category2" class="nav-link nav-link-category" data-bs-toggle="tab">Category-2</a>
-                        </li>
+                        @endforeach
                     </ul>
-                    <div class="tab-content">
-                        <div id="#category1" class="tab-pane fade show active">
-                            <div class="row justify-content-between align-items-center" role="tablist">
+                    <div class="tab-content py-2">
+                        @foreach($category as $k => $cat)
+                        <div id="#category{{$k}}" class="tab-pane fade @if($k == 0) show active @endif">
+                            <div class="row align-items-center">
+                                @foreach($cat->webinar as $webinar)
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     <div class="card rounded-lg">
                                         <div class="card-header bg-primary" style="height: 120px">
                                             <img class="mb-1" src="{{ asset('/img/logo_mentify_white.svg') }}" width="90px" alt="mentify">
-                                            <h2 class="text-white">Judul Webinar</h2>
-                                            {{-- <div class="desc-webinar d-flex justify-content-between mt--4">
-                                                <ul class="avatar-list">
-                                                    <li class="avatar-items">
-                                                        <i class="icofont icofont-user-male"></i>
-                                                    </li>
-                                                </ul>
-                                            </div> --}}
+                                            <h2 class="text-white">{{ $webinar->title }}</h2>
                                         </div>
                                         <div class="card-body">
                                             <h5 class="fw-bold">Speaker</h5>
-                                            <p>People 1, People 2, People 3</p>
+                                            <p>{{ $webinar->speaker }}</p>
                                             <div class="status-webinar">
                                                 <h6 class="fw-bold text-primary">Status Webinar</h6>
                                                 <div class="progress">
-                                                    <div class="progress-bar w-75" role="progressbar" aria-label="Kuota" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar w-0" role="progressbar" aria-label="Kuota" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                                 <div class="message-status-webinar" style="font-size: 0.9rem">
-                                                    Pendaftaran sampai ....
+                                                    Pendaftaran sampai {{ \Carbon\Carbon::parse($webinar->registration_date)->translatedFormat('d F Y') }}
                                                 </div>
                                             </div>
                                         </div>
@@ -117,43 +111,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
-                        <div id="#category2" class="tab-pane fade">
-                            <div class="row justify-content-between align-items-center" role="tablist">
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="card rounded-lg">
-                                        <div class="card-header bg-primary" style="height: 120px">
-                                            <img class="mb-1" src="{{ asset('/img/logo_mentify_white.svg') }}" width="90px" alt="mentify">
-                                            <h2 class="text-white">Judul Webinar</h2>
-                                            {{-- <div class="desc-webinar d-flex justify-content-between mt--4">
-                                                <ul class="avatar-list">
-                                                    <li class="avatar-items">
-                                                        <i class="icofont icofont-user-male"></i>
-                                                    </li>
-                                                </ul>
-                                            </div> --}}
-                                        </div>
-                                        <div class="card-body">
-                                            <h5 class="fw-bold">Speaker</h5>
-                                            <p>People 1, People 2, People 3</p>
-                                            <div class="status-webinar">
-                                                <h6 class="fw-bold text-primary">Status Webinar</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar w-75" role="progressbar" aria-label="Kuota" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                                <div class="message-status-webinar" style="font-size: 0.9rem">
-                                                    Pendaftaran sampai ....
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer bg-white border-0">
-                                            <button class="btn btn-warning w-100">Daftar Webinar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="space-section"></div>
@@ -222,19 +183,26 @@
                     <h1 class="text-center fw-bold">Apa Kata <span class="text-primary">Mereka</span> yang telah berpartisipasi?</h1>
                     <div class="row">
                         <div class="col-12">
-                            
-                            <div class="card p-4 border-0 shadow">
-                                <div class="card-body">
-                                    <div style="py-3">
-                                        <img class="img" src="{{ asset('/img/twoquotes_83742.png') }}" height="30rem" alt='"'>
+                            <div id="carouselSlidesOnly" class="carousel slide shadow" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    @foreach ($testimony as $key => $item)
+                                    <div class="carousel-item @if($key == 0) active @endif">
+                                        <div class="card p-4 border-0 shadow">
+                                            <div class="card-body">
+                                                <div style="py-3">
+                                                    <img class="img" src="{{ asset('/img/twoquotes_83742.png') }}" height="30rem" alt='"'>
+                                                </div>
+                                                <p class="fw-bold text-muted my-3">{{ $item->testimony }}</p>
+                                                <p class="mt-5">
+                                                    <span class="fw-semibold">{{ $item->tester_name }}</span><br/>
+                                                    <span class="fw-bold fs-4">{{ $item->tester_job }}</span>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <p class="fw-bold text-muted my-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi, suscipit, aperiam nulla placeat veniam dolore quam magni expedita corrupti assumenda exercitationem itaque fugit! Deserunt provident dolor iure est, officia ipsa!</p>
-                                    <p class="mt-5">
-                                        <span class="fw-semibold">Nama</span><br/>
-                                        <span class="fw-bold fs-4">Jobs</span>
-                                    </p>
+                                    @endforeach
                                 </div>
-                            </div>
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -280,4 +248,9 @@
             </div>
         </footer>
     </body>
+    <script type="module">
+        $(document).ready(function() {
+            $('#')
+        });
+    </script>
 </html>
