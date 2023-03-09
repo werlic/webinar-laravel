@@ -18,3 +18,35 @@ body {
 .btn-search:hover, .btn-search:focus, .btn-search:active {
     color: $color-text-default;
 }
+
+.nav-tabs .nav-item .nav-link-category {
+    font-weight: bold;
+    background-color: $secondary;
+    color: $grey;
+}
+
+.nav-tabs .nav-item .nav-link-category.active {
+    background-color: $primary;
+    color: $white;
+}
+
+.bg-footer {
+    background-color: $color-footer-default;
+}
+
+.btn-link {
+    color: $text-muted;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    color: $grey;
+}
+
+.btn-link:focus, .btn-link:active {
+    color: $color-text-default;
+}
+
+.text-gray {
+    color: $text-muted;
+}
