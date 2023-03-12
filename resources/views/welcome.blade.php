@@ -5,12 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-
+        <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
         <!-- Styles -->
         @vite([
             'resources/js/app.js', 
             'resources/assets/icofont/icofont.min.css',
         ])
+        <link rel="stylesheet" href="{{ asset('assets-static/owlcarousel/assets/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets-static/css/theme-carousel.css') }}">
         <style>
             .space-section {
                 height: 6rem;
@@ -181,29 +183,23 @@
                 <div class="space-section"></div>
                 <div id="#section-4">
                     <h1 class="text-center fw-bold">Apa Kata <span class="text-primary">Mereka</span> yang telah berpartisipasi?</h1>
-                    <div class="row">
-                        <div class="col-12">
-                            <div id="carouselSlidesOnly" class="carousel slide shadow" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    @foreach ($testimony as $key => $item)
-                                    <div class="carousel-item @if($key == 0) active @endif">
-                                        <div class="card p-4 border-0 shadow">
-                                            <div class="card-body">
-                                                <div style="py-3">
-                                                    <img class="img" src="{{ asset('/img/twoquotes_83742.png') }}" height="30rem" alt='"'>
-                                                </div>
-                                                <p class="fw-bold text-muted my-3">{{ $item->testimony }}</p>
-                                                <p class="mt-5">
-                                                    <span class="fw-semibold">{{ $item->tester_name }}</span><br/>
-                                                    <span class="fw-bold fs-4">{{ $item->tester_job }}</span>
-                                                </p>
-                                            </div>
-                                        </div>
+                    <div class="owl-carousel owl-theme">
+                        @foreach ($testimony as $key => $item)
+                        <div class="item p-3">
+                            <div class="card p-4 border-0 shadow">
+                                <div class="card-body">
+                                    <div style="py-3">
+                                        <img class="img" src="{{ asset('/img/twoquotes_83742.png') }}" height="30rem" alt='"'>
                                     </div>
-                                    @endforeach
+                                    <p class="fw-bold text-muted my-3">{!! $item->testimony !!}</p>
+                                    <p class="mt-5">
+                                        <span class="fw-semibold">{{ $item->tester_name }}</span><br/>
+                                        <span class="fw-bold fs-4">{{ $item->tester_job }}</span>
+                                    </p>
                                 </div>
-                              </div>
+                            </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -211,14 +207,6 @@
         <div class="space-section"></div>
         <footer class="bg-footer w-100">
             <div class="container py-3">
-                {{-- <div class="row mt-5">
-                    <div class="col-12 w-100 text-center">
-                        <img class="img-bg" src="{{ asset('img/path1658.png') }}" alt="">
-                        <div class="">
-
-                        </div>
-                    </div>
-                </div> --}}
                 <div class="space-section"></div>
                 <div class="row">
                     <div class="col-md-3 col-sm-6">
@@ -244,13 +232,25 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         </footer>
     </body>
-    <script type="module">
-        $(document).ready(function() {
-            $('#')
+    {{-- <script type="module">
+        
+    </script> --}}
+    <script
+    src="https://code.jquery.com/jquery-3.6.4.js"
+    integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous"></script>
+    <script src="{{ asset('assets-static/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".owl-carousel").owlCarousel({
+                items: 1,
+                loop:true,
+                autoplay: true,
+                // responsive: true,
+            });
         });
     </script>
 </html>
