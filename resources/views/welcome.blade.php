@@ -8,8 +8,7 @@
         <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
         <!-- Styles -->
         @vite([
-            'resources/js/app.js', 
-            'resources/assets/icofont/icofont.min.css',
+            'resources/js/app.js'       
         ])
         <link rel="stylesheet" href="{{ asset('assets-static/owlcarousel/assets/owl.carousel.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets-static/css/theme-carousel.css') }}">
