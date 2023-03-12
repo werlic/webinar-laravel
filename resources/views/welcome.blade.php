@@ -85,7 +85,7 @@
                     </ul>
                     <div class="tab-content py-2">
                         @foreach($category as $k => $cat)
-                        <div id="#category{{$k}}" class="tab-pane fade @if($k == 0) show active @endif">
+                        <div id="category{{$k}}" class="tab-pane fade @if($k == 0) show active @endif" role="tabpanel">
                             <div class="row align-items-center">
                                 @foreach($cat->webinar as $webinar)
                                 <div class="col-md-3 col-sm-6 col-xs-12">
